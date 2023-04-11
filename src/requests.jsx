@@ -12,7 +12,7 @@ export const addCronJob = async (
 	};
 
 	const response = await fetch(
-		`http://${DOMAIN.aryan}/${ENDPOINTS.addBackup}`,
+		`http://${DOMAIN.localhost}/${ENDPOINTS.addBackup}`,
 		{
 			method: "POST",
 			body: JSON.stringify(_body),
@@ -40,7 +40,7 @@ export const removeCronJob = async (
 	};
 	console.log("body", _body);
 	const response = await fetch(
-		`http://${DOMAIN.aryan}/${ENDPOINTS.stopBackup}`,
+		`http://${DOMAIN.localhost}/${ENDPOINTS.stopBackup}`,
 		{
 			method: "POST",
 			body: JSON.stringify(_body),

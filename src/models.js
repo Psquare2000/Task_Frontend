@@ -1,5 +1,5 @@
 export const DOMAIN = {
-	aryan: "10.30.42.41:4002",
+	localhost: "localhost:4001",
 };
 
 export const ENDPOINTS = {
