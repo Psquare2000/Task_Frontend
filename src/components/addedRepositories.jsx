@@ -8,7 +8,7 @@ export default function AddedRepositories({ backups, setBackups }) {
 	const columns = [
 		{ field: "repoLink", headerName: "Repository", width: 300 },
 		{ field: "location", headerName: "Backup Location", width: 140 },
-		{ field: "displayFrequency", headerName: "Frequency", width: 100 },
+		{ field: "displayFrequency", headerName: "Frequency(s)", width: 100 },
 		// {
 		// 	field: "fullName",
 		// 	headerName: "Full name",
@@ -41,7 +41,7 @@ export default function AddedRepositories({ backups, setBackups }) {
 							return (
 								toMatch.repoLink !== data.repoLink ||
 								toMatch.displayFrequency !==
-									data.frequency.title ||
+									data.frequency ||
 								toMatch.location !== data.location
 							);
 						});
@@ -61,7 +61,7 @@ export default function AddedRepositories({ backups, setBackups }) {
 		return {
 			...backup,
 			id: index,
-			displayFrequency: backup.frequency.title,
+			displayFrequency: backup.frequency,
 		};
 	});
 	return (
