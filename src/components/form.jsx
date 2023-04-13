@@ -10,8 +10,8 @@ import { FREQ, LSKeys } from "../models";
 function FrequencyButton({ freq, setFrequency, currentFrequency }) {
 	return (
 		<Button
-			variant={freq === currentFrequency ? "contained" : "outlined"}
-			onClick={() => setFrequency(freq)}
+			variant={freq.frequency === currentFrequency ? "contained" : "outlined"}
+			onClick={() => setFrequency(freq.frequency)}
 		>
 			{freq.title}
 		</Button>
@@ -20,7 +20,7 @@ function FrequencyButton({ freq, setFrequency, currentFrequency }) {
 
 export default function FormPropsTextFields({ backups, setBackups }) {
 	const [repoLink, setRepoLink] = useState("");
-	const [frequency, setFrequency] = useState(FREQ.daily);
+	const [frequency, setFrequency] = useState(1);
 	const [location, setLocation] = useState("");
 	const [isLoading, setLoading] = useState(false);
 
@@ -53,7 +53,7 @@ export default function FormPropsTextFields({ backups, setBackups }) {
 					}}
 				/>
 			</div>
-			<div className="flex flex-row gap-x-2">
+			<div className="flex flex-row gap-x-2 justify-center">
 				{Object.values(FREQ).map((freq) => (
 					<FrequencyButton
 						key={freq.title.length}
@@ -62,6 +62,14 @@ export default function FormPropsTextFields({ backups, setBackups }) {
 						currentFrequency={frequency}
 					/>
 				))}
+				<TextField
+                        id="filled-helperText"
+                        label="Backup Frequency (seconds)"
+                        variant="filled"
+                        onChange={(e) => {
+                            setFrequency(e.target.value);
+                        }}
+                    />
 			</div>
 			{isLoading ? (
 				<LoadingButton
@@ -104,7 +112,7 @@ export default function FormPropsTextFields({ backups, setBackups }) {
 							// TODO: handle backup location
 							const response = await addCronJob(
 								repoLink,
-								frequency.frequency,
+								Number(frequency),
 								location
 							);
 							if (!response) {

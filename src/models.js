@@ -8,8 +8,8 @@ export const ENDPOINTS = {
 };
 
 export const FREQ = {
-	daily: { title: "daily", frequency: 5 },
-	weekly: { title: "weekly", frequency: 10 },
+	daily: { title: "daily", frequency: 86400 },
+	weekly: { title: "weekly", frequency: 604800 },
 	monthly: { title: "monthly", frequency: 2592000 },
 };
 

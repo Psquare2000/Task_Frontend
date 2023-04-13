@@ -26,7 +26,7 @@ export default function AddedRepositories({ backups, setBackups }) {
 					console.log(toMatch);
 					const response = await removeCronJob(
 						toMatch.repoLink,
-						toMatch.frequency.frequency,
+						Number(toMatch.frequency),
 						toMatch.location
 					);
 					if (!response) {
